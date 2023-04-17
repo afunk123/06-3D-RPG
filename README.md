@@ -1,2 +1,5 @@
-# 06-3D-RPG
-This is the 6th project for MSCH-C220
+# Godot-3D-Template
+
+Godot Template for 3D Games
+
+Includes Keyboard mappings and Global.gd
