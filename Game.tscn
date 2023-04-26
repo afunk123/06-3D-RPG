@@ -1,3 +1,221 @@
-[gd_scene format=2]
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Terrain/terrain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Collectable/StellatedCollectable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/RayCast.gd" type="Script" id=5]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=6]
+[ext_resource path="res://NPC/NPC.gd" type="Script" id=7]
+[ext_resource path="res://UI/UI.gd" type="Script" id=8]
+[ext_resource path="res://UI/Dialogue.gd" type="Script" id=9]
+[ext_resource path="res://Enemy/Drone.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Music  Sound/Untitled score.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Music  Sound/Star Sound.wav" type="AudioStream" id=12]
+[ext_resource path="res://UI/Rain.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Music  Sound/rain-and-thunder-nature-sounds-7803.mp3" type="AudioStream" id=14]
+
+[sub_resource type="Environment" id=7]
+ambient_light_color = Color( 0.486275, 0.486275, 0.486275, 1 )
+ambient_light_energy = 3.07
+fog_enabled = true
+fog_color = Color( 0.501961, 0.6, 0.701961, 1 )
+fog_sun_color = Color( 0.654902, 0.654902, 0.654902, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 448.6
+fog_depth_curve = 0.574348
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 4.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 3 )
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 4.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereShape" id=6]
+radius = 3.93499
 
 [node name="Game" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
+script = ExtResource( 2 )
+
+[node name="Pivot" type="Position3D" parent="Player"]
+
+[node name="Camera" type="Camera" parent="Player/Pivot"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 5, -8 )
+
+[node name="Particles" parent="Player/Pivot/Camera" instance=ExtResource( 13 )]
+
+[node name="RayCast" type="RayCast" parent="Player/Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 100 )
+collision_mask = 4
+collide_with_areas = true
+script = ExtResource( 5 )
+
+[node name="Reticule" type="Position3D" parent="Player/Pivot/RayCast"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player/Pivot/RayCast/Reticule"]
+mesh = SubResource( 4 )
+
+[node name="CSGTorus" type="CSGTorus" parent="Player/Pivot/RayCast/Reticule"]
+transform = Transform( 1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 0, 0 )
+inner_radius = 0.582154
+outer_radius = 0.708618
+sides = 20
+ring_sides = 20
+material = SubResource( 5 )
+
+[node name="Terrain" parent="." instance=ExtResource( 3 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+
+[node name="Star_Container" type="Spatial" parent="."]
+visible = false
+
+[node name="StellatedCollectable2" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.046, 4.5, -17.103 )
+
+[node name="StellatedCollectable" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -60.036, 2.2, 17.093 )
+
+[node name="StellatedCollectable3" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 41.8991, 5.5, -37.8851 )
+
+[node name="StellatedCollectable4" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -33.8538, 2, -70.6507 )
+
+[node name="StellatedCollectable5" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -59.7497, 2, -36.7495 )
+
+[node name="StellatedCollectable6" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 37.506, 2.5, 16.403 )
+
+[node name="StellatedCollectable7" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 43.074, 2, -61.11 )
+
+[node name="StellatedCollectable8" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -41.677, 2, -21.249 )
+
+[node name="StellatedCollectable9" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.758, 2.5, -53.966 )
+
+[node name="StellatedCollectable10" parent="Star_Container" instance=ExtResource( 4 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -17.276, 2, 20.352 )
+
+[node name="Enemy_Container" type="Spatial" parent="."]
+
+[node name="Drone" parent="Enemy_Container" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 100 )
+collision_layer = 5
+collision_mask = 5
+
+[node name="NPC" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.96498, 0, -0.262324, 0, 1, 0, 0.262324, 0, -0.96498, 14.2163, 0, -17.5936 )
+script = ExtResource( 7 )
+
+[node name="Area" type="Area" parent="NPC"]
+
+[node name="CollisionShape" type="CollisionShape" parent="NPC/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000787735, -0.525071, 2.17472 )
+shape = SubResource( 6 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 8 )
+
+[node name="Damage" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0 )
+
+[node name="Background" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 0.360784 )
+
+[node name="Score" type="Label" parent="UI"]
+margin_left = 10.0
+margin_right = 160.0
+margin_bottom = 40.0
+text = "Score:"
+valign = 1
+
+[node name="Time" type="Label" parent="UI"]
+margin_left = 850.0
+margin_right = 1000.0
+margin_bottom = 40.0
+text = "Time: 00:00"
+align = 2
+valign = 1
+
+[node name="Health" type="Label" parent="UI"]
+margin_left = 240.0
+margin_right = 390.0
+margin_bottom = 40.0
+text = "Health: 20 / "
+align = 1
+valign = 1
+
+[node name="Stars" type="Label" parent="UI"]
+margin_left = 550.0
+margin_right = 700.0
+margin_bottom = 40.0
+text = "Stars: "
+align = 1
+valign = 1
+
+[node name="Timer" type="Timer" parent="UI"]
+
+[node name="Dialogue" type="Control" parent="UI"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
+
+[node name="Background" type="ColorRect" parent="UI/Dialogue"]
+margin_top = 560.0
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.360784 )
+
+[node name="Text" type="RichTextLabel" parent="UI/Dialogue"]
+margin_top = 575.0
+margin_right = 1024.0
+margin_bottom = 615.0
+bbcode_enabled = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true
+
+[node name="Star_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -15.0
+autoplay = true
+
+[connection signal="body_entered" from="NPC/Area" to="NPC" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="NPC/Area" to="NPC" method="_on_Area_body_exited"]
+[connection signal="timeout" from="UI/Timer" to="UI" method="_on_Timer_timeout"]

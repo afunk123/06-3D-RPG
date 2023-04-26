@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+lifetime_randomness = 1.0
+trail_divisor = 7
+trail_size_modifier = SubResource( 8 )
+emission_shape = 2
+emission_box_extents = Vector3( 120, 1, 100 )
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, -60, 0 )
+
+[sub_resource type="SpatialMaterial" id=10]
+metallic = 1.0
+roughness = 0.83
+
+[sub_resource type="SphereMesh" id=11]
+material = SubResource( 10 )
+radius = 0.5
+
+[node name="Particles" type="Particles"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -11.5076, 23.028, -27.5474 )
+amount = 2000
+lifetime = 3.0
+preprocess = 600.0
+randomness = 1.0
+visibility_aabb = AABB( -25.6682, -4, -30.4018, 51.3365, 8, 60.8036 )
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="Particles2" type="Particles" parent="."]
+amount = 2000
+lifetime = 3.0
+preprocess = 600.0
+randomness = 1.0
+visibility_aabb = AABB( -25.6682, -4, -30.4018, 51.3365, 8, 60.8036 )
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="Particles3" type="Particles" parent="."]
+amount = 2000
+lifetime = 3.0
+preprocess = 600.0
+randomness = 1.0
+visibility_aabb = AABB( -25.6682, -4, -30.4018, 51.3365, 8, 60.8036 )
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
