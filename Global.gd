@@ -38,17 +38,41 @@ func decrease_health(h):
 	if health <= 0:
 		get_tree().change_scene("res://UI/Lose_Screen")
 
-func _star_count():
-	if get_node("/root/Game/Star_Container").is_not_visible():
-		pass
-	else: 
-		if get_node("/root/Game/Star_Container").is_visible():
-			var star = get_node("/root/Game/Star_Container")
-			if star.get_child_count() == 10:
-				var count = get_node_or_null("/root/Game/UI/Stars")
-				if count != null:
-					count.text = "Stars: 0 / 10"
-			elif star == 9:
-				star_numbers += 1
-				get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " / str(10)"
-
+func star_count():
+	if get_node("/root/Game/Star_Container").is_visible():
+		var star = get_node("/root/Game/Star_Container")
+		var star_number = star.get_child_count()
+		if star_number == 10:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 9:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 8:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 7:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 6:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 5:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 4:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 3:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 2:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 1:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		elif star_number == 0:
+			star_numbers += 1
+			get_node("/root/Game/UI/Stars").text = "Stars: " + str(star_numbers) + " " + "/" + " " + "10"
+		

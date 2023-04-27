@@ -172,7 +172,7 @@ valign = 1
 margin_left = 240.0
 margin_right = 390.0
 margin_bottom = 40.0
-text = "Health: 20 / "
+text = "Health: 20 / 20"
 align = 1
 valign = 1
 
@@ -180,7 +180,7 @@ valign = 1
 margin_left = 550.0
 margin_right = 700.0
 margin_bottom = 40.0
-text = "Stars: "
+text = "Stars: 0 / 10"
 align = 1
 valign = 1
 

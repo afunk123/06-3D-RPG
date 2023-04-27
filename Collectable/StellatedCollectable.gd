@@ -3,6 +3,7 @@ extends Area
 func _on_StellatedCollectable_body_entered(body):
 	if body.name == "Player":
 		Global.update_score(10)
+		Global.star_count()
 		get_node("/root/Game/Star_Sound").play()
 		queue_free()
 

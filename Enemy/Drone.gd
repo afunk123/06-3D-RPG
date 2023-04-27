@@ -12,9 +12,15 @@ func _ready():
 	angle = randf() * 2 * PI
 	new_position(angle)
 
+
 func _physics_process(_delta):
+	if get_node("/root/Game/Star_Container").get_child_count() == 5:
+		$Shield_2.hide()
+		get_node("/root/Game/Shield_Sound_1").play()
 	if get_node("/root/Game/Star_Container").get_child_count() == 0:
+		$Shield_1.hide()
 		$Sprite3D.show()
+		get_node("/root/Game/Shield_Sound").play()
 	else:
 		$Sprite3D.hide()
 
@@ -41,3 +47,5 @@ func die():
 			Global.update_score(100)
 			queue_free()
 			get_tree().change_scene("res://UI/End_Game.tscn")
+
+

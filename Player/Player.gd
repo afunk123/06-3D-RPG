@@ -71,3 +71,5 @@ func damage(d):
 	Global.decrease_health(d)
 	if Global.health <=0:
 		get_tree().change_scene("res://UI/Lose_Screen.tscn")
+
+
