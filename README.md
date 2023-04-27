@@ -1,5 +1,9 @@
-# Godot-3D-Template
+# Project 06 - 3D RPG
 
-Godot Template for 3D Games
+# Implementation
 
-Includes Keyboard mappings and Global.gd
+# References
+
+# Future Development
+
+# Created By
